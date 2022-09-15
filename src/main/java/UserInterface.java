@@ -10,6 +10,7 @@ public class UserInterface {
                     1. Opret superhelt
                     2. Liste af superhelte
                     3. Søg efter en superhelt
+                    4. Rediger en superhelt
                     9. Afslut
                     """);
             System.out.print("> ");
@@ -27,6 +28,8 @@ public class UserInterface {
             } else if (startInput == 3) {
                 superhelte.findSuperhelt();
                 break;
+            } else if (startInput == 4) {
+                superhelte.redigerSuperhelt();
             } else if (startInput == 9) {
                 System.out.println("Program afsluttet!");
             } else {

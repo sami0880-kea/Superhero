@@ -55,4 +55,9 @@ public class Superhero {
     public boolean setMenneske( boolean menneske) {
         return this.menneske = menneske;
     }
+
+    @Override
+    public String toString() {
+        return heltNavn + " (" + navn + ")";
+    }
 }
