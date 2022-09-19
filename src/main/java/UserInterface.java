@@ -5,6 +5,7 @@ public class UserInterface {
         int startInput = 0;
 
         do {
+            Scanner sc = new Scanner(System.in);
             System.out.print("""
                     Velkommen til SUPERHERO UNIVERSET.
                     1. Opret superhelt
@@ -15,7 +16,7 @@ public class UserInterface {
                     """);
             System.out.print("> ");
 
-            Scanner sc = new Scanner(System.in);
+
             startInput = sc.nextInt();
             Database superhelte = new Database();
 
@@ -32,6 +33,7 @@ public class UserInterface {
                 superhelte.redigerSuperhelt();
             } else if (startInput == 9) {
                 System.out.println("Program afsluttet!");
+                System.exit(0);
             } else {
                 System.out.println("Fejl, vælg venligst et tal som er i menuen!");
             }

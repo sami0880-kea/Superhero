@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 public class Database {
     Scanner sc = new Scanner(System.in);
+    UserInterface UI = new UserInterface();
 
     Superhero s1 = new Superhero("Bruce Wayne", "Batman", "Fight skills", 12083.40, 1939, true);
     ArrayList<Superhero> helteDatabase = new ArrayList<>(Arrays.asList(s1));
 
     ArrayList<Superhero> helteArray = new ArrayList<>();
+
 
     public void tilføjSuperhelt(String navn, String heltNavn, String heltPower, double heltStyrke, int heltOprindelse, boolean menneske) {
         helteDatabase.add(new Superhero(navn, heltNavn, heltPower, heltStyrke, heltOprindelse, menneske));
@@ -30,18 +32,14 @@ public class Database {
         double hStyrke = sc.nextDouble();
 
         System.out.print("Indtast oprindelse: ");
-        int hOprindelse = sc.nextInt();
+        int hOprindelse = TjekInt();
 
         System.out.print("Er din superhelt et menneske? (Ja/Nej): ");
-        String oMenneske = sc.nextLine();
+        boolean oMenneske = sc.nextBoolean();
 
-        boolean oMenneske2;
-        if(oMenneske.toLowerCase() == "ja") {
-            oMenneske2 = true;
-        } else {
-            oMenneske2 = false;
-        }
-        tilføjSuperhelt(hONavn, hNavn, hPower, hStyrke, hOprindelse, oMenneske2);
+        tilføjSuperhelt(hONavn, hNavn, hPower, hStyrke, hOprindelse, oMenneske);
+
+        UI.startProgram();
     }
 
     public void hentSuperhelte() {
@@ -51,7 +49,7 @@ public class Database {
         }
     }
     public Superhero findSuperhelt() {
-        System.out.print("Søg efter et navn: ");
+        System.out.print("Søg efter et superhelt navn: ");
         String søgHeltNavn = sc.nextLine();
         for (Superhero s : helteDatabase) {
             if(s.getHeltNavn().toLowerCase().contains(søgHeltNavn.toLowerCase())) {
@@ -71,7 +69,7 @@ public class Database {
         }
 
         System.out.println("Indtast nummer på den superhelt der skal redigeres: ");
-        int nr = sc.nextInt();
+        int nr = TjekInt();
         sc.nextLine();
 
         Superhero redigerHelt = søgResultat.get(nr-1);
@@ -127,4 +125,12 @@ public class Database {
         }
         return null;
     }
+
+    public int TjekInt() {
+        while(!sc.hasNextInt()) {
+            System.out.print("> '" + sc.next() + "' er ikke et tal. Prøv igen!: ");
+        }
+        return sc.nextInt();
+    }
 }
+
